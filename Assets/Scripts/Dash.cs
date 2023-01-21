@@ -4,13 +4,14 @@ public class Dash : MonoBehaviour
 {
     private float _horizontal;
     private float _vertical;
+    private float _lastMovement;
 
     [SerializeField]
     private float _dashSpeed = 10f;
     [SerializeField]
-    private float _movemenentRange = 15f;
+    private float _movemenentRange = 3f;
     [SerializeField]
-    private float _cooldown = 2f;
+    private float _cooldown = 0.5f;
     private float _nextDash = 0f;
 
 
