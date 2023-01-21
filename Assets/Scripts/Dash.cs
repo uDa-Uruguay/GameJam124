@@ -1,37 +1,62 @@
+using System.Collections;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
     private float _horizontal;
     private float _vertical;
-    private float _lastMovement;
-
-    [SerializeField]
-    private float _dashSpeed = 10f;
-    [SerializeField]
-    private float _movemenentRange = 3f;
-    [SerializeField]
-    private float _cooldown = 0.5f;
-    private float _nextDash = 0f;
+    private bool isDiagonally = false;
+    
+    private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashingPower = 25f;
+    [SerializeField] private float dashingTime = 0.3f;
+    [SerializeField] private float dashingCooldown = 1f;
 
 
-    void FixedUpdate()
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private TrailRenderer tr;
+
+    private void Update()
     {
-        //Input del teclado
+        // Obtiene info del movimiento
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
-        KeyCode dashK = KeyCode.Space;
+        // Chequea que no este moviendose en horizontal.
+        if (_horizontal != 0 && _vertical != 0) isDiagonally = true;
+        else isDiagonally = false;
 
-        if (_horizontal != 0 && Input.GetKeyDown(dashK) && Time.time > _nextDash)
+        if (isDashing || !canDash) return;
+
+        if (_horizontal == 0 && _vertical == 0) return;
+        else if (Input.GetKey(KeyCode.Space)) StartCoroutine(DashAction());
+    }
+
+    private IEnumerator DashAction()
+    {
+        canDash = false;
+        isDashing = true;
+        tr.emitting = true;
+
+        if (_horizontal != 0 && !isDiagonally)
         {
-            this.transform.Translate(new Vector2(_movemenentRange, 0) * Time.deltaTime * _dashSpeed * _horizontal);
-            _nextDash = Time.time + _cooldown;
-        }
-        else if (_vertical != 0 && Input.GetKey(dashK) && Time.time > _nextDash)
+            rb.velocity = new Vector2(_horizontal * dashingPower, 0f);
+            Debug.Log("Dashing horizontal");
+        } else if (_vertical != 0 && !isDiagonally)
         {
-            this.transform.Translate(new Vector2(0, _movemenentRange) * Time.deltaTime * _dashSpeed * _vertical);
-            _nextDash = Time.time + _cooldown;
+            rb.velocity = new Vector2(0f, _vertical * dashingPower);
+            Debug.Log("Dashing vertical");
+        } else if (isDiagonally)
+        {
+            rb.velocity = new Vector2((_horizontal * dashingPower) / 2, (_vertical * dashingPower)/2);
+            Debug.Log("Dashing diagonally");
         }
+        yield return new WaitForSeconds(dashingTime);
+        rb.velocity = new Vector2(0f, 0f);
+        tr.emitting = false;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }
