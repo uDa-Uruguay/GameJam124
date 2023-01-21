@@ -10,8 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float _vertical;
     [SerializeField]
     private float _playerMovment = 5f;
-    [SerializeField]
-    private float _dashSpeed = 10f;
+
 
     // Update is called once per frame
     void Update()
@@ -24,18 +23,9 @@ public class PlayerMovement : MonoBehaviour
         //Movimiento y Velocidad
         transform.Translate(Vector3.right * Time.deltaTime * _playerMovment * _horizontal);
         transform.Translate(Vector3.up * Time.deltaTime * _playerMovment * _vertical);
-
     }
 
-    private void Dash()
-    {
-        KeyCode dashK = KeyCode.Space;
-
-        if (_horizontal > 0 && Input.GetKey(dashK))
-        {
-            this.transform.Translate(new Vector2(5, 0) * Time.deltaTime * _dashSpeed * _horizontal);
-        }
-    }
+  
 
     private void FixedUpdate()
     {
