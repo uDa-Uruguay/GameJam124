@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     private PlayerHealth healthComponent;
 
+    [SerializeField] private GameObject healthBarObject;
+    private HealthBar healtBar;
+
     // Elementos de UI
     [SerializeField] private TMP_Text _playerHealth;
     [SerializeField] private TMP_Text _playerScore;
@@ -21,6 +24,9 @@ public class GameManager : MonoBehaviour
         {
             _playerHealth.text = healthComponent.maxHealth.ToString();
         }
+
+        healtBar = healthBarObject.GetComponent<HealthBar>();
+        if (healtBar && healthComponent) healtBar.maxHealth = healthComponent.maxHealth;
     }
 
     public void Update()
