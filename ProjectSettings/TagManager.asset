@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Heal
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

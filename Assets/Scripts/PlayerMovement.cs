@@ -12,25 +12,15 @@ public class PlayerMovement : MonoBehaviour
     private float _playerMovment = 5f;
 
 
-    // Update is called once per frame
     void Update()
     {
- 
         //Input del teclado
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
-        
+
         //Movimiento y Velocidad
         transform.Translate(Vector3.right * Time.deltaTime * _playerMovment * _horizontal);
         transform.Translate(Vector3.up * Time.deltaTime * _playerMovment * _vertical);
     }
-
-  
-
-    private void FixedUpdate()
-    {
-
-    }
-
 
 }

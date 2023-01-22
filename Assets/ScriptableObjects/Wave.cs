@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Wave", menuName = "ScriptableObjects/Waves", order = 1)]
+// Se puede crear desde el menu y permite generar "waves" u oleadas personalizadas. 
+
+[CreateAssetMenu(fileName = "Wave", menuName = "ScriptableObjects/Waves")]
 public class Wave : ScriptableObject
 {
     [field: SerializeField] public GameObject[] EnemiesInWave { get; private set; } // Posibles enemigos de la oleada.

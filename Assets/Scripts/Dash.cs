@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+// AGREGAR COMENTARIOS.
 public class Dash : MonoBehaviour
 {
     private float _horizontal;

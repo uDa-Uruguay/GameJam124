@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WaveOne
   m_EditorClassIdentifier: 
   <EnemiesInWave>k__BackingField:
-  - {fileID: 23275613569903066, guid: e486738765c1b5e43825c09e9eeacb82, type: 3}
+  - {fileID: 4715270407151227028, guid: 395006daadfb9c74ebad4a5fcc9ae39b, type: 3}
   <TimeSpawning>k__BackingField: 20
   <TimeBetweenEnemies>k__BackingField: 2

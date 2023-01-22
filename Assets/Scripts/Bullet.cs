@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-    private int playerDamage = 3;
-
+    // SIN REVISAR.
     private Vector3 mousePos;
     private Camera mainCam;
     private Rigidbody2D rd2D;
     public float force;
 
-    public NormalEnemy normalEnemy;
+    // Valores de daño y el tiempo en que demora en desaparecer.
+    public float damage = 3f;
+    [SerializeField] private float timeBeforeDisappear = 1.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        // SIN REVISAR.
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rd2D = GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -28,26 +27,31 @@ public class Bullet : MonoBehaviour
 
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-
     }
 
+    // Al aparecer en pantalla, comienza la corrutina. Toma como dato el tiempo en que demorara en desaparecer.
+    private void OnEnable()
+    {
+        StartCoroutine(automaticDestroy(timeBeforeDisappear));
+    }
+
+    // Acciones al hacer colisión.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Toco el Enemigo");
+        // Recibe daño el enemigo
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log(normalEnemy);
-            normalEnemy.TakePlayerDamage(playerDamage);
+            // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
+            EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
+            if (enemy._health <= 0) Destroy(collision.gameObject);
+            enemy._health -= damage;
         }
-
-        Destroy(gameObject);
-
     }
 
-
-
-    private void OnBecameInvisible()
+    // Corrutina para eleminar automaticamente balas.
+    private IEnumerator automaticDestroy(float interval)
     {
+        yield return new WaitForSeconds(interval);
         Destroy(gameObject);
     }
 }
