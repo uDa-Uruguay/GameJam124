@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
+    private int playerDamage = 3;
+
     private Vector3 mousePos;
     private Camera mainCam;
     private Rigidbody2D rd2D;
     public float force;
 
-
+    public NormalEnemy normalEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,21 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Toco el Enemigo");
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log(normalEnemy);
+            normalEnemy.TakePlayerDamage(playerDamage);
+        }
+
+        Destroy(gameObject);
+
+    }
+
+
 
     private void OnBecameInvisible()
     {
