@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6febb5ea5710ce4ea97d2a997e8a515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2768398006287667160, guid: 9bf0efa35981f244db55503cca30cc9b, type: 3}
-  bulletTranform: {fileID: 759083632}
+  bullet: {fileID: 367166473896431242, guid: 0606c68ab6c5c0c4cb3a5fd3e69022f6, type: 3}
+  bulletTranform: {fileID: 529205649}
   canFire: 1
   timeBetweenFiring: 0.2
 --- !u!1 &945229209
