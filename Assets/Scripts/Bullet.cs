@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public float force;
 
     // Valores de daño y el tiempo en que demora en desaparecer.
-    public float damage = 3f;
+    public float damage = 4f;
     [SerializeField] private float timeBeforeDisappear = 1.5f;
 
     void Start()
