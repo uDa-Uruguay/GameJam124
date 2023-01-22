@@ -7,6 +7,9 @@ public class EnemyData : MonoBehaviour
     [SerializeField] public float _attackSpeed;
     [SerializeField] public float _movementSpeed;
     [SerializeField] public float _damage;
+    [SerializeField] public float _score;
+
+    [SerializeField] public SpriteRenderer spriteRenderer;
 
     // Esto asegura que no se spamee el ataque, solo atacará segun su velocidad de ataque (en segundos)
     private float canAttack;
@@ -20,9 +23,13 @@ public class EnemyData : MonoBehaviour
         _attackSpeed = _enemyData.AttackSpeed;
         _movementSpeed = _enemyData.MovementSpeed;
         _damage = _enemyData.Damage;
+        _score = _enemyData.Score;
 
         //Se settea de tal forma que pueda dar un primer golpe sin tener que esperar.
         canAttack = _attackSpeed;
+
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
+        if (spriteRenderer) spriteRenderer.sprite = _enemyData.EnemySprite;
     }
 
     private void Update()
@@ -47,6 +54,8 @@ public class EnemyData : MonoBehaviour
             PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
             // Si la vida es menor o igual a cero, destruye al player.
             if (health.currentHealth <= 0) Destroy(collision.gameObject);
+
+            
             health.TakeDamage(_damage);
             canAttack = 0f;
         }

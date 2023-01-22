@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         Transform PlayerScale = transform.Find("Player");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //Input del teclado
         _horizontal = Input.GetAxisRaw("Horizontal");

@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6785e98f0aed19941acd35f57b2a863d, type: 3}
-  m_Name: BasicEnemy
+  m_Script: {fileID: 11500000, guid: b22cd1c953aa9884ba8ea8dec8d4cfb6, type: 3}
+  m_Name: KilledEnemy
   m_EditorClassIdentifier: 
-  <EnemyHealth>k__BackingField: 20
-  <MovementSpeed>k__BackingField: 3
-  <AttackSpeed>k__BackingField: 3
-  <Damage>k__BackingField: 5
-  <EnemyBehavior>k__BackingField: []
+  listeners: []

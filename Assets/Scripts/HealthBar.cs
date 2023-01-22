@@ -14,15 +14,24 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         fill.color = gradient.Evaluate(1f);
+
+        StartCoroutine(getMaxHealth());
     }
     private void Update()
     {
-        slider.maxValue = maxHealth;
+
     }
 
     public void UpdateHealth(float Health)
     {
         slider.value = Health + 0.3f;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+
+    public IEnumerator getMaxHealth()
+    {
+        yield return new WaitForSeconds(0.3f);
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
     }
 }

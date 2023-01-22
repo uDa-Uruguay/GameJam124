@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bullet : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class Bullet : MonoBehaviour
     // Valores de daño y el tiempo en que demora en desaparecer.
     public float damage = 4f;
     [SerializeField] private float timeBeforeDisappear = 1.5f;
+
+    // Evento de score
+    public static event Action triggerNewScore;
 
     void Start()
     {
@@ -45,6 +49,8 @@ public class Bullet : MonoBehaviour
             EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
             if (enemy._health <= 0) Destroy(collision.gameObject);
             enemy._health -= damage;
+
+            triggerNewScore?.Invoke(); // Si no es null, lo invoca.
         }
     }
 
