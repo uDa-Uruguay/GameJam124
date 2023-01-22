@@ -48,7 +48,7 @@ MonoBehaviour:
   bullet: {fileID: 367166473896431242, guid: 0606c68ab6c5c0c4cb3a5fd3e69022f6, type: 3}
   bulletTranform: {fileID: 6329441037510982435}
   canFire: 1
-  timeBetweenFiring: 0.2
+  timeBetweenFiring: 0.5
 --- !u!1 &6329441037510982434
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,8 +74,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329441037510982434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0.15, y: 0, z: 0}
+  m_LocalScale: {x: 0.9, y: 0.90000004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6329441036664471746}
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: dd8d99f8cfd80bc448e0751a5cff131d, type: 3}
+  m_Sprite: {fileID: 769205531, guid: 3391b61ce8f36be4aa4ee5fb7d1933a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

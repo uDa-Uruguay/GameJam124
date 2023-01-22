@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6febb5ea5710ce4ea97d2a997e8a515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 367166473896431242, guid: 0606c68ab6c5c0c4cb3a5fd3e69022f6, type: 3}
+  bullet: {fileID: 7312135519874742054, guid: a15d02ac3f0226c48b778c7dddc4cc4a, type: 3}
   bulletTranform: {fileID: 7919324576874298496}
   canFire: 1
-  timeBetweenFiring: 0.25
+  timeBetweenFiring: 0.2
