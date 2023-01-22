@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Healing : MonoBehaviour
+public class SmallHeal : MonoBehaviour
 {
     public PlayerHealth playerHealth;
     private int healPower = 5;
