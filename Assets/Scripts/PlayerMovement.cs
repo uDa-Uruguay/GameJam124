@@ -10,7 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private float _vertical;
     [SerializeField]
     private float _playerMovment = 5f;
+    //private bool facingRight = true;
 
+    private void Start()
+    {
+        Transform PlayerScale = transform.Find("Player");
+    }
 
     void Update()
     {
@@ -21,6 +26,28 @@ public class PlayerMovement : MonoBehaviour
         //Movimiento y Velocidad
         transform.Translate(Vector3.right * Time.deltaTime * _playerMovment * _horizontal);
         transform.Translate(Vector3.up * Time.deltaTime * _playerMovment * _vertical);
+
+
+        //Flip que se Bugea el RigidBodie2D
+
+        //if (_horizontal > 0 && !facingRight)
+        {
+            //Flip();
+        }
+
+        //if(_horizontal < 0 && facingRight)
+        {
+            //Flip();
+        }
+
     }
 
+    //void Flip()
+    //{
+        //Vector3 currentScale = gameObject.transform.localScale;
+        //currentScale.x *= -1;
+        //gameObject.transform.localScale = currentScale;
+
+        //facingRight = !facingRight;
+    //}
 }
