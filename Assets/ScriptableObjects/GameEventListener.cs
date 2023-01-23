@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventListener : MonoBehaviour
+public class GameEventListener<T, E, UER> : MonoBehaviour, 
+    IGameEventListener<T> where : GameEvent<T> where UER : UnityEvent<T>
 {
-    public GameEvent gameEvent;
-
-    public UnityEvent response;
+    [SerializeField] private E gameEvent;
 
     private void OnEnable()
     {

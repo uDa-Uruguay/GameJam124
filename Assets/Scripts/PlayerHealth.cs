@@ -16,6 +16,11 @@ public class PlayerHealth : MonoBehaviour
         healthbar = healthBarObject.GetComponent<HealthBar>();
     }
 
+    private void FixedUpdate()
+    {
+        if (currentHealth <= 0) Destroy(this.gameObject);
+    }
+
     public void TakeHeal(int heal)
     {
         currentHealth += heal;

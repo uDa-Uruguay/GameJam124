@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c6b62a3fc5f3d4c81ff49a70d87704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7100631780378327666, guid: 205ccf12f6c546146adc819a58296631, type: 3}
+  player: {fileID: 0}
   healthBarObject: {fileID: 0}
-  _playerHealth: {fileID: 0}
-  _playerScore: {fileID: 0}
+  _playerHealthText: {fileID: 0}
+  _playerScoreText: {fileID: 0}
