@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaveTwo
   m_EditorClassIdentifier: 
   <EnemiesInWave>k__BackingField:
-  - {fileID: 23275613569903066, guid: e486738765c1b5e43825c09e9eeacb82, type: 3}
-  - {fileID: 8788939931767873293, guid: 088b4397655dd4c458e941748f4a89e3, type: 3}
-  <TimeSpawning>k__BackingField: 10
+  - {fileID: 4715270407151227028, guid: 395006daadfb9c74ebad4a5fcc9ae39b, type: 3}
+  - {fileID: 2194464045520587083, guid: 63087b5677427a549819007785c5259b, type: 3}
+  <TimeSpawning>k__BackingField: 30
   <TimeBetweenEnemies>k__BackingField: 3

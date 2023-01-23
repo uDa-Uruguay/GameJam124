@@ -9,31 +9,43 @@ public class GameManager : MonoBehaviour
     // Toma informacion del player para asi extraer su vida actual.
     [SerializeField] private GameObject player;
     private PlayerHealth healthComponent;
+    private PlayerScore playerScore;
+    private int playerScoreData;
 
     [SerializeField] private GameObject healthBarObject;
     private HealthBar healtBar;
 
     // Elementos de UI
-    [SerializeField] private TMP_Text _playerHealth;
-    [SerializeField] private TMP_Text _playerScore;
+    [SerializeField] private TMP_Text _playerHealthText;
+    [SerializeField] private TMP_Text _playerScoreText;
 
     private void Awake()
     {
         healthComponent = player.GetComponent<PlayerHealth>();
         if (healthComponent) //is not null.
         {
-            _playerHealth.text = healthComponent.maxHealth.ToString();
+            _playerHealthText.text = healthComponent.maxHealth.ToString();
         }
 
+        playerScore = player.GetComponent<PlayerScore>();
+        if (playerScore) _playerScoreText.text = playerScore.currentScore.ToString();
+
+
         healtBar = healthBarObject.GetComponent<HealthBar>();
-        if (healtBar && healthComponent) healtBar.maxHealth = healthComponent.maxHealth;
+        if (healtBar && healthComponent)
+        {
+            //Debug.Log("Working");
+            healtBar.maxHealth = healthComponent.maxHealth;
+        }
+
     }
 
     public void Update()
     {
         // Vida del player.
-        _playerHealth.text = healthComponent.currentHealth.ToString();
+        _playerHealthText.text = healthComponent.currentHealth.ToString();
 
-        // FALTA SCORE.
+        // Score del player.
+        _playerScoreText.text = playerScore.currentScore.ToString();
     }
 }

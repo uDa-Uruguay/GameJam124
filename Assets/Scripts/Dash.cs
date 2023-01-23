@@ -9,7 +9,7 @@ public class Dash : MonoBehaviour
     private bool isDiagonally = false;
 
     [SerializeField] private bool canDash = true;
-    private bool isDashing;
+    public bool isDashing;
     [SerializeField] private float dashingPower = 25f;
     [SerializeField] private float dashingTime = 0.3f;
     [SerializeField] private float dashingCooldown = 1f;
