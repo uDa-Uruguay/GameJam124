@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 1
   targetTag: Player
-  _speed: 4
+  _speed: 5
   _target: {fileID: 0}
   _searchByTag: 1
 --- !u!114 &519420034

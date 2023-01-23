@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 420043964960348613}
   - component: {fileID: 420043964960348612}
   - component: {fileID: 420043964960348608}
-  - component: {fileID: 420043964960348611}
   - component: {fileID: 964876648341490469}
   m_Layer: 0
   m_Name: FastEnemy
@@ -29,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 420043964960348614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.17, y: 2.3, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -349610880, guid: 3391b61ce8f36be4aa4ee5fb7d1933a4, type: 3}
+  m_Sprite: {fileID: -1165886725, guid: 3391b61ce8f36be4aa4ee5fb7d1933a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,27 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18133782, y: 0.12159209}
   m_EdgeRadius: 0
---- !u!50 &420043964960348611
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420043964960348614}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 7
 --- !u!114 &964876648341490469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,10 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b272c3c76d7d57642860885069c3962d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: cad0c470e4ea390458609f7e3c3d4485, type: 2}
-  _health: 6
-  _attackSpeed: 2
-  _movementSpeed: 6
-  _damage: 4
+  _enemyData: {fileID: 11400000, guid: 02e99dea0ce37a744a340a58af8253a3, type: 2}
+  _health: 0
+  _attackSpeed: 0
+  _movementSpeed: 0
+  _damage: 0
+  _score: 0
+  spriteRenderer: {fileID: 420043964960348612}
   behaviors:
   - {fileID: 11400000, guid: f2e4ffd1de6578447ae56936e231feb7, type: 2}

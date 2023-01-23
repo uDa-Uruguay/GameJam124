@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventListener<T, E, UER> : MonoBehaviour, 
-    IGameEventListener<T> where : GameEvent<T> where UER : UnityEvent<T>
+public class GameEventListener : MonoBehaviour
 {
-    [SerializeField] private E gameEvent;
+    [SerializeField] private GameEvent gameEvent;
 
     private void OnEnable()
     {
@@ -20,6 +19,6 @@ public class GameEventListener<T, E, UER> : MonoBehaviour,
 
     public void OnEventRaised()
     {
-        response.Invoke();
+        //response.Invoke();
     }
 }

@@ -15,8 +15,6 @@ public class Bullet : MonoBehaviour
     public float damage = 4f;
     [SerializeField] private float timeBeforeDisappear = 1.5f;
 
-    // Evento de score
-    public static event Action triggerNewScore;
 
     void Start()
     {
@@ -47,10 +45,12 @@ public class Bullet : MonoBehaviour
         {
             // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
             EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
-            if (enemy._health <= 0) Destroy(collision.gameObject);
+            if (enemy._health <= 0) 
+            {
+                Destroy(collision.gameObject);
+                GameEvents.current.EnemyTakingDamage();
+            }
             enemy._health -= damage;
-
-            triggerNewScore?.Invoke(); // Si no es null, lo invoca.
         }
     }
 

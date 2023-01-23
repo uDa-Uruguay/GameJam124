@@ -48,3 +48,4 @@ MonoBehaviour:
   healthBarObject: {fileID: 0}
   _playerHealthText: {fileID: 0}
   _playerScoreText: {fileID: 0}
+  _playerHighscore: {fileID: 0}

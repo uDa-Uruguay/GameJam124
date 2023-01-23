@@ -16,16 +16,28 @@ public class EnemySpawner : MonoBehaviour
     private bool stopSpawning = false; // Detiene las oleadas.
     private bool spawning = false; // Check para evitar que la corrutina se ejecute sin parar.
 
-    private void Awake()
+    // Margenes del area de spawn
+    [SerializeField] private float leftMargin;
+    [SerializeField] private float righMargin;
+    [SerializeField] private float topMargin;
+    [SerializeField] private float bottomMargin;
+    private float randomX;
+    private float randomY;
+
+
+    private void Start()
     {
         // Setting de la primer oleada.
         currentwave = waves[_waveNumber];
         timeIntervalW = currentwave.TimeSpawning;
         timeIntervalE = currentwave.TimeBetweenEnemies;
+
+        GameEvents.current.onPlayerDying += StopSpawning;
     }
 
     private void FixedUpdate()
     {
+
         // Si ya no hay mas oleadas, no se ejecuta más alla de este codigo.
         if (stopSpawning) return;
         if (finalWave()) return;
@@ -43,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // Si ya paso el tiempo necesario entre enemigo y enemigo, se ejecuta nuevamente.
+        ResetEnemyPosition();
         if (!spawning) StartCoroutine(spawnWave(currentwave, timeIntervalE));
     }
 
@@ -57,12 +70,25 @@ public class EnemySpawner : MonoBehaviour
         else return false;
     }
 
+    private void ResetEnemyPosition()
+    {
+        // Setting del area donde spawnearan. (Rectangulo)
+        randomX = Random.Range(leftMargin, righMargin);
+        randomY = Random.Range(bottomMargin, topMargin);
+    }
+
     // Spawnea de un enemugo y toma en cuenta la oleada actual y el intervalo de tiempo entre enemigo y enemigo.
     private IEnumerator spawnWave(Wave wave, float interval)
     {
         spawning = true;
-        GameObject newEnemy = Instantiate(wave.EnemiesInWave[Random.Range(0, wave.EnemiesInWave.Length)], new Vector2(Random.Range(-9.30f, 9.30f), Random.Range(-5.5f, 5.5f)), Quaternion.identity);
+        GameObject newEnemy = Instantiate(wave.EnemiesInWave[Random.Range(0, wave.EnemiesInWave.Length)], new Vector2(randomX, randomY), Quaternion.identity);
         yield return new WaitForSeconds(interval);
         spawning = false;
+    }
+
+    // Si el player murio se para el spawn
+    private void StopSpawning()
+    {
+        stopSpawning = true;
     }
 }

@@ -49,3 +49,8 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 386e581c6acb7c245967d88f72b98dad, type: 2}
   - {fileID: 11400000, guid: e11bb965649b3da41949da25c005b3a3, type: 2}
+  - {fileID: 11400000, guid: 10e3e7ed1109a5a4a8dec00426046f16, type: 2}
+  leftMargin: -9.5
+  righMargin: 10.5
+  topMargin: 6.5
+  bottomMargin: -7.5

@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Variables para Player
+    // Para extraer SpriteRenderer
+    [SerializeField] GameObject PlayerSprite;
+    private SpriteRenderer sp;
+    private SpriteCointainerManager spriteContainer;
 
-    private Rigidbody2D rd2D;
-
+    // Variables de movimiento
     private float _horizontal;
     private float _vertical;
-    [SerializeField]
-    private float _playerMovment = 5f;
-    //private bool facingRight = true;
+    [SerializeField] private float _playerMovment = 5f;
+
+    // Last facing
+    private bool facingLeft = false;
+    // Check de ir en diagonal
+    private bool movingDiagonally = false;
 
     private void Start()
     {
-        Transform PlayerScale = transform.Find("Player");
+        sp = PlayerSprite.GetComponent<SpriteRenderer>();
+        spriteContainer = PlayerSprite.GetComponent<SpriteCointainerManager>();
     }
 
     void FixedUpdate()
@@ -23,31 +29,45 @@ public class PlayerMovement : MonoBehaviour
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
-        //Movimiento y Velocidad
-        transform.Translate(Vector3.right * Time.deltaTime * _playerMovment * _horizontal);
-        transform.Translate(Vector3.up * Time.deltaTime * _playerMovment * _vertical);
+        SetSprites(movingDiagonally);
 
+        if (_horizontal != 0 && _vertical != 0) movingDiagonally = true;
+        else movingDiagonally = false;
 
-        //Flip que se Bugea el RigidBodie2D
+        Movement(movingDiagonally);
 
-        //if (_horizontal > 0 && !facingRight)
+        if (_horizontal < 0 || facingLeft) sp.flipX = true;
+
+        if(_horizontal > 0)
         {
-            //Flip();
+            facingLeft = false;
+            sp.flipX = false;
         }
-
-        //if(_horizontal < 0 && facingRight)
-        {
-            //Flip();
-        }
-
     }
 
-    //void Flip()
-    //{
-        //Vector3 currentScale = gameObject.transform.localScale;
-        //currentScale.x *= -1;
-        //gameObject.transform.localScale = currentScale;
+    private void Movement(bool diagonally)
+    {
+        if (!diagonally)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * _playerMovment * _horizontal);
+            transform.Translate(Vector3.up * Time.deltaTime * _playerMovment * _vertical);
+        } else
+        {
+            transform.Translate((Vector3.right * Time.deltaTime * _playerMovment * _horizontal) / 2);
+            transform.Translate((Vector3.up * Time.deltaTime * _playerMovment * _vertical) / 2);
+        }
+    }
 
-        //facingRight = !facingRight;
-    //}
+    private void SetSprites(bool diagonally)
+    {
+        if (_horizontal != 0 && spriteContainer.lastSpriteSet != 0)
+        {
+            spriteContainer.setNewSprite(0);
+            return;
+        }
+        else if (diagonally) return;
+   
+        if (_vertical > 0 && spriteContainer.lastSpriteSet != 1) spriteContainer.setNewSprite(1);
+        else if (_vertical < 0 && spriteContainer.lastSpriteSet != 2) spriteContainer.setNewSprite(2);
+    }
 }
