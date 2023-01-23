@@ -18,7 +18,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentHealth <= 0) Destroy(this.gameObject);
+        if (currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+            GameEvents.current.PlayerDying();
+        }
+
     }
 
     public void TakeHeal(int heal)

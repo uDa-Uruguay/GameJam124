@@ -4,17 +4,17 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Game Event")]
 
-public  abstract class GameEvent<T> : ScriptableObject
+public  abstract class GameEvent : ScriptableObject
 {
-    private readonly List<GameEventListener<T>> listeners = new List<GameEventListener<T>>();
+    private readonly List<GameEventListener> listeners = new List<GameEventListener>();
 
     // Raise event through different methods signatures
 
-    public void Raise(T item)
+    public void Raise()
     {
         for (int i = listeners.Count - 1; i >= 0; i--)
         {
-            listeners[i].OnEventRaised(item);
+            listeners[i].OnEventRaised();
         }
     }
 

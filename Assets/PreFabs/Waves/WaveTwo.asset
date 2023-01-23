@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemiesInWave>k__BackingField:
   - {fileID: 3344953390759250748, guid: 6798bc0e4b2d41744942ec358aec317e, type: 3}
-  - {fileID: 2194464045520587083, guid: 63087b5677427a549819007785c5259b, type: 3}
+  - {fileID: 420043964960348614, guid: 2a6941650900c6a4e8b2f5b2636b421f, type: 3}
   <TimeSpawning>k__BackingField: 30
   <TimeBetweenEnemies>k__BackingField: 3
