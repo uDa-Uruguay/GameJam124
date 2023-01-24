@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool facingLeft = false;
     // Check de ir en diagonal
     private bool movingDiagonally = false;
+
 
     private void Start()
     {
@@ -70,4 +72,5 @@ public class PlayerMovement : MonoBehaviour
         if (_vertical > 0 && spriteContainer.lastSpriteSet != 1) spriteContainer.setNewSprite(1);
         else if (_vertical < 0 && spriteContainer.lastSpriteSet != 2) spriteContainer.setNewSprite(2);
     }
+
 }

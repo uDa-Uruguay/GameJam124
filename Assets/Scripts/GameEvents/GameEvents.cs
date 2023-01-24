@@ -21,4 +21,10 @@ public class GameEvents : MonoBehaviour
     {
         onPlayerDying?.Invoke();
     }
+
+    public event Action onPlayerTakingDamage;
+    public void PlayerTakingDamage()
+    {
+        onPlayerTakingDamage?.Invoke();
+    }
 }

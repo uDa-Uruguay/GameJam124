@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 // Controlador de olas o "waves"
 public class EnemySpawner : MonoBehaviour
@@ -10,10 +10,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timeIntervalE; // Tiempo entre enemigo y enemigo.
     [SerializeField] private Wave[] waves; // Almacena todas las waves.
 
-    private Wave currentwave; // Lleva registro de cúal es la oleada actual.
-    private int _waveNumber = 0; // Número de oleada actual.
+    public Wave currentwave; // Lleva registro de cúal es la oleada actual.
+    [SerializeField] private int _waveNumber = 0; // Número de oleada actual.
 
-    private bool stopSpawning = false; // Detiene las oleadas.
+    public bool stopSpawning = false; // Detiene las oleadas.
     private bool spawning = false; // Check para evitar que la corrutina se ejecute sin parar.
 
     // Margenes del area de spawn
@@ -24,26 +24,32 @@ public class EnemySpawner : MonoBehaviour
     private float randomX;
     private float randomY;
 
+    // Numero de wave en pantalla
+    [SerializeField] private TextMeshProUGUI waveNumGUI;
 
-    private void Start()
+
+    private void Awake()
     {
         // Setting de la primer oleada.
+        _waveNumber = 0;
         currentwave = waves[_waveNumber];
+        stopSpawning = false;
         timeIntervalW = currentwave.TimeSpawning;
         timeIntervalE = currentwave.TimeBetweenEnemies;
+
+        waveNumGUI.text = $"Wave {_waveNumber + 1}";
 
         GameEvents.current.onPlayerDying += StopSpawning;
     }
 
     private void FixedUpdate()
     {
-
         // Si ya no hay mas oleadas, no se ejecuta más alla de este codigo.
         if (stopSpawning) return;
         if (finalWave()) return;
 
         // Si paso el tiempo de la oleada, comienza la siguiente.
-        if (Time.time >= timeIntervalW)
+        if (Time.timeSinceLevelLoad >= timeIntervalW)
         {
             _waveNumber++; 
             if (finalWave()) return;
@@ -52,6 +58,8 @@ public class EnemySpawner : MonoBehaviour
             timeIntervalW += currentwave.TimeSpawning;
             timeIntervalE = currentwave.TimeBetweenEnemies;
             spawning = false;
+
+            waveNumGUI.text = $"Wave {_waveNumber + 1}";
         }
 
         // Si ya paso el tiempo necesario entre enemigo y enemigo, se ejecuta nuevamente.
@@ -81,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator spawnWave(Wave wave, float interval)
     {
         spawning = true;
-        GameObject newEnemy = Instantiate(wave.EnemiesInWave[Random.Range(0, wave.EnemiesInWave.Length)], new Vector2(randomX, randomY), Quaternion.identity);
+        Instantiate(wave.EnemiesInWave[Random.Range(0, wave.EnemiesInWave.Length)], new Vector2(randomX, randomY), Quaternion.identity);
         yield return new WaitForSeconds(interval);
         spawning = false;
     }

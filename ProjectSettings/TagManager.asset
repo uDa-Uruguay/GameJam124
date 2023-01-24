@@ -14,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Bullets
   - 
   - 
   - 
@@ -55,7 +55,4 @@ TagManager:
     locked: 0
   - name: UpsidePlayer
     uniqueID: 3889283221
-    locked: 0
-  - name: New Layer 5
-    uniqueID: 3665746125
     locked: 0

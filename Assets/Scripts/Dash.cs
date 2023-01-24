@@ -9,7 +9,7 @@ public class Dash : MonoBehaviour
     private bool isDiagonally = false;
 
     [SerializeField] private bool canDash = true;
-    public bool isDashing;
+    public bool isDashing = false;
     [SerializeField] private float dashingPower = 25f;
     [SerializeField] private float dashingTime = 0.3f;
     [SerializeField] private float dashingCooldown = 1f;
@@ -43,15 +43,15 @@ public class Dash : MonoBehaviour
         if (_horizontal != 0 && !isDiagonally)
         {
             rb.velocity = new Vector2(_horizontal * dashingPower, 0f);
-            Debug.Log("Dashing horizontal");
+            //Debug.Log("Dashing horizontal");
         } else if (_vertical != 0 && !isDiagonally)
         {
             rb.velocity = new Vector2(0f, _vertical * dashingPower);
-            Debug.Log("Dashing vertical");
+            //Debug.Log("Dashing vertical");
         } else if (isDiagonally)
         {
             rb.velocity = new Vector2((_horizontal * dashingPower) / 2, (_vertical * dashingPower)/2);
-            Debug.Log("Dashing diagonally");
+            //Debug.Log("Dashing diagonally");
         }
         yield return new WaitForSeconds(dashingTime);
         rb.velocity = new Vector2(0f, 0f);

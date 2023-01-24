@@ -52,8 +52,7 @@ public class EnemyData : MonoBehaviour
         if (collision.gameObject.tag == "Player" && _attackSpeed <= canAttack)
         {
             PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
-            // Si la vida es menor o igual a cero, destruye al player.
-            if (health.currentHealth <= 0) Destroy(collision.gameObject);
+            GameEvents.current.PlayerTakingDamage();
             health.TakeDamage(_damage);
             canAttack = 0f;
         }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 420043964960348612}
   - component: {fileID: 420043964960348608}
   - component: {fileID: 964876648341490469}
+  - component: {fileID: 847966888}
   m_Layer: 0
   m_Name: FastEnemy
   m_TagString: Enemy
@@ -133,3 +134,18 @@ MonoBehaviour:
   spriteRenderer: {fileID: 420043964960348612}
   behaviors:
   - {fileID: 11400000, guid: f2e4ffd1de6578447ae56936e231feb7, type: 2}
+--- !u!114 &847966888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420043964960348614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f01514e474a88a46b043c85486d37d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetScaleX: 3
+  targetScaleY: 5.5
+  time: 0.4

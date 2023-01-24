@@ -11,13 +11,17 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rd2D;
     public float force;
 
-    // Valores de daño y el tiempo en que demora en desaparecer.
+
+    // Valores de daï¿½o y el tiempo en que demora en desaparecer.
     public float damage = 4f;
     [SerializeField] private float timeBeforeDisappear = 1.5f;
 
 
-    void Start()
+    void OnEnable()
     {
+        // Al aparecer en pantalla, comienza la corrutina. Toma como dato el tiempo en que demorara en desaparecer.
+        StartCoroutine(automaticDestroy(timeBeforeDisappear));
+
         // SIN REVISAR.
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rd2D = GetComponent<Rigidbody2D>();
@@ -29,18 +33,14 @@ public class Bullet : MonoBehaviour
 
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
     }
 
-    // Al aparecer en pantalla, comienza la corrutina. Toma como dato el tiempo en que demorara en desaparecer.
-    private void OnEnable()
-    {
-        StartCoroutine(automaticDestroy(timeBeforeDisappear));
-    }
-
-    // Acciones al hacer colisión.
+  
+    // Acciones al hacer colisiï¿½n.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Recibe daño el enemigo
+        // Recibe daï¿½o el enemigo
         if (collision.gameObject.tag == "Enemy")
         {
             // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
                 GameEvents.current.EnemyTakingDamage();
             }
             enemy._health -= damage;
-        }
+        } 
     }
 
     // Corrutina para eleminar automaticamente balas.
