@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
     }
 
     // Actualiza el score. (Actualmente no toma parametros personalizados)
-    private void UpdateScore()
+    private void UpdateScore(int points)
     {
-        playerScoreData += 15;
+        playerScoreData += points;
         if (playerScore) playerScore.currentScore = playerScoreData;
     }
 

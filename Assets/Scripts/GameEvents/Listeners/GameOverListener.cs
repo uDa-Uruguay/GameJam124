@@ -16,4 +16,9 @@ public class GameOverListener : MonoBehaviour
     {
         gameOver.SetActive(true);
     }
+
+    private void OnDestroy()
+    {
+        GameEvents.current.onPlayerDying -= createGameOver;
+    }
 }

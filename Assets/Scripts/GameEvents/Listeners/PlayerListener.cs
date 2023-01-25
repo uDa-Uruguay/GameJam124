@@ -39,4 +39,10 @@ public class PlayerListener : MonoBehaviour
     {
         audioSource.Play();
     }
+
+    private void OnDestroy()
+    {
+        GameEvents.current.onPlayerTakingDamage -= redSpriteActive;
+        GameEvents.current.onPlayerTakingDamage -= hitSound;
+    }
 }

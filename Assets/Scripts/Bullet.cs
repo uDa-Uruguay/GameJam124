@@ -45,11 +45,6 @@ public class Bullet : MonoBehaviour
         {
             // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
             EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
-            if (enemy._health <= 0) 
-            {
-                Destroy(collision.gameObject);
-                GameEvents.current.EnemyTakingDamage();
-            }
             enemy._health -= damage;
         } 
     }

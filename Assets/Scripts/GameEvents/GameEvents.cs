@@ -10,10 +10,11 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    public event Action onEnemyTakingDamage;
-    public void EnemyTakingDamage()
+    // More like enemy dying, actually
+    public event Action<int> onEnemyTakingDamage;
+    public void EnemyTakingDamage(int points)
     {
-        onEnemyTakingDamage?.Invoke();
+        onEnemyTakingDamage?.Invoke(points);
     }
 
     public event Action onPlayerDying;

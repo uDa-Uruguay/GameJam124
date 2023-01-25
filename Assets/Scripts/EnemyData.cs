@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyData : MonoBehaviour
@@ -7,7 +8,7 @@ public class EnemyData : MonoBehaviour
     [SerializeField] public float _attackSpeed;
     [SerializeField] public float _movementSpeed;
     [SerializeField] public float _damage;
-    [SerializeField] public float _score;
+    [SerializeField] public int _score;
 
     [SerializeField] public SpriteRenderer spriteRenderer;
 
@@ -15,6 +16,11 @@ public class EnemyData : MonoBehaviour
     private float canAttack;
 
     [SerializeField] private Behavior[] behaviors;
+    [SerializeField] private bool startBehaviors = false;
+
+    // Animations
+    [SerializeField] private AnimationSprites spawnSprites;
+    private Sprite[] _spawnAnimation;
 
     private void Awake()
     {
@@ -30,18 +36,29 @@ public class EnemyData : MonoBehaviour
 
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         if (spriteRenderer) spriteRenderer.sprite = _enemyData.EnemySprite;
+
+        _spawnAnimation = spawnSprites.SpriteList;
     }
 
     private void Update()
     {
-        // De tener más de un comportamiento, los activa a todos. (Hay que probar si sigue funcionando al tener mas de uno)
-        for (int i = 0; i < behaviors.Length; i++)
+        if (startBehaviors)
         {
-            behaviors[i].behavior(this);
+            // De tener más de un comportamiento, los activa a todos. (Hay que probar si sigue funcionando al tener mas de uno)
+            for (int i = 0; i < behaviors.Length; i++)
+            {
+                behaviors[i].behavior(this);
+            }
         }
 
         // Se le va sumando el tiempo para ir comprobando si puede o no atacar.
         canAttack += Time.deltaTime;
+
+        if (_health <= 0)
+        {
+            Destroy(this.gameObject);
+            GameEvents.current.EnemyTakingDamage(_score);
+        }
     }
 
 
@@ -55,6 +72,15 @@ public class EnemyData : MonoBehaviour
             GameEvents.current.PlayerTakingDamage();
             health.TakeDamage(_damage);
             canAttack = 0f;
+        }
+    }
+
+    private IEnumerator spawnAnimation()
+    {
+        for (int i = 0; i < _spawnAnimation.Length; i++)
+        {
+            spriteRenderer.sprite = _spawnAnimation[i];
+            yield return new WaitForSeconds(1f / spawnSprites.FramesPerSecond);
         }
     }
 }
