@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9522ca669c2ec45bcbb1530419b5d3, type: 3}
+  m_Name: Fast Enemy Spawn Animation
+  m_EditorClassIdentifier: 
+  <SpriteList>k__BackingField:
+  - {fileID: 2029738501, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: 9772962, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: -1160194299, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: 612497343, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: 183838453, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: -367206680, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: -2015194515, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: -323313182, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: -332983396, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: 649149707, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: 2120729112, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  - {fileID: -131439314, guid: c955beaa1302c7547b2f773eb3e19673, type: 3}
+  <FramesPerSecond>k__BackingField: 12

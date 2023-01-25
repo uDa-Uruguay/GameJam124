@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9522ca669c2ec45bcbb1530419b5d3, type: 3}
+  m_Name: Red Enemy Spawn Animation
+  m_EditorClassIdentifier: 
+  <SpriteList>k__BackingField:
+  - {fileID: 1909099409, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: -2010942739, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: -98778731, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: 1075097002, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: 841408248, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: 1464653335, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: -1741133970, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: 1397138044, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: -984963222, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: -1834698156, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: 602562361, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  - {fileID: -124326907, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
+  <FramesPerSecond>k__BackingField: 12

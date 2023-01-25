@@ -37,7 +37,13 @@ public class EnemyData : MonoBehaviour
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         if (spriteRenderer) spriteRenderer.sprite = _enemyData.EnemySprite;
 
-        _spawnAnimation = spawnSprites.SpriteList;
+        if (spawnSprites)
+        {
+            _spawnAnimation = spawnSprites.SpriteList;
+            StartCoroutine(spawnAnimation());
+        }
+        else Debug.Log("Enemy spawn animation wasn't set");
+
     }
 
     private void Update()
@@ -65,6 +71,8 @@ public class EnemyData : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        // Si aun no termino de spawnea, no hará daño.
+        if (!startBehaviors) return;
         // Hace daño al player
         if (collision.gameObject.tag == "Player" && _attackSpeed <= canAttack)
         {
@@ -82,5 +90,6 @@ public class EnemyData : MonoBehaviour
             spriteRenderer.sprite = _spawnAnimation[i];
             yield return new WaitForSeconds(1f / spawnSprites.FramesPerSecond);
         }
+        startBehaviors = true;
     }
 }

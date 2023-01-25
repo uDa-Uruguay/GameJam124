@@ -134,6 +134,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2194464045520587063}
   behaviors:
   - {fileID: 11400000, guid: f2e4ffd1de6578447ae56936e231feb7, type: 2}
+  startBehaviors: 0
+  spawnSprites: {fileID: 11400000, guid: a30bef0e3b44e2b4489efea7c9ddaead, type: 2}
 --- !u!114 &270145222
 MonoBehaviour:
   m_ObjectHideFlags: 0
