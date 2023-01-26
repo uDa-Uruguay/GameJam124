@@ -5,15 +5,15 @@ using System;
 
 public class Bullet : MonoBehaviour
 {
-    // SIN REVISAR.
-    private Vector3 mousePos;
+    // Datos a settear.
+    private Vector3 mousePos; // Posicion del mouse
     private Camera mainCam;
     private Rigidbody2D rd2D;
-    public float force;
 
 
-    // Valores de da�o y el tiempo en que demora en desaparecer.
-    public float damage = 4f;
+    // Valores de daño y el tiempo en que demora en desaparecer.
+    [SerializeField] private float force;
+    [SerializeField] private float damage = 4f;
     [SerializeField] private float timeBeforeDisappear = 1.5f;
 
 
@@ -22,18 +22,19 @@ public class Bullet : MonoBehaviour
         // Al aparecer en pantalla, comienza la corrutina. Toma como dato el tiempo en que demorara en desaparecer.
         StartCoroutine(automaticDestroy(timeBeforeDisappear));
 
-        // SIN REVISAR.
+        // Setteo.
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        rd2D = GetComponent<Rigidbody2D>();
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        rd2D = this.GetComponent<Rigidbody2D>();
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); // Toma posición de pantalla y la transforma en posición x,y
 
+        // Sale en dirección que toque el mouse
         Vector3 direction = mousePos - transform.position;
         Vector3 rotation = transform.position - mousePos;
         rd2D.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
+        // Controla la rotacion, no se como.
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-
     }
 
   
@@ -45,7 +46,7 @@ public class Bullet : MonoBehaviour
         {
             // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
             EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
-            enemy._health -= damage;
+            enemy.TakingDamage(damage);
         } 
     }
 

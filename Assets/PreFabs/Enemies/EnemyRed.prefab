@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2194464045520587080}
   - component: {fileID: 270145222}
   - component: {fileID: -8358263629455020450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyRed
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 2194464045520587083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.8, y: 4.8, z: 4.8}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 6, y: 6, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,10 +49,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009858176, y: 0.007974934}
+  m_Offset: {x: -0.14918368, y: 0.00014737993}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0.5}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
@@ -60,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.18414593, y: 0.1506542}
+  m_Size: {x: 0.18058798, y: 0.1221903}
   m_EdgeRadius: 0
 --- !u!212 &2194464045520587063
 SpriteRenderer:
@@ -103,9 +103,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 166960835, guid: 3391b61ce8f36be4aa4ee5fb7d1933a4, type: 3}
+  m_Sprite: {fileID: -124326907, guid: 49f755d91bfc7a146985dd287b2d0bda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.32, y: 0.32}
@@ -135,6 +135,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2194464045520587063}
   startBehaviors: 0
   spawnSprites: {fileID: 11400000, guid: a30bef0e3b44e2b4489efea7c9ddaead, type: 2}
+  damagedColor: {r: 0.8862745, g: 0.48235294, b: 0.48235294, a: 1}
+  timeDamagedColor: 0.3
 --- !u!114 &270145222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f01514e474a88a46b043c85486d37d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScaleX: 4
-  targetScaleY: 6
+  targetScaleX: 5.5
+  targetScaleY: 8
   time: 0.8
 --- !u!114 &-8358263629455020450
 MonoBehaviour:

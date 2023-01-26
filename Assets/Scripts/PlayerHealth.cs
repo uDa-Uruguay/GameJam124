@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -9,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameObject healthBarObject;
     private HealthBar healthbar;
+
+    public bool isInvulnerable = false;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -40,6 +40,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (isInvulnerable) return;
+
         currentHealth -= damage;
 
         if (healthbar) healthbar.UpdateHealth(currentHealth);

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         // Vida del player.
-        _playerHealthText.text = healthComponent.currentHealth.ToString();
+        _playerHealthText.text = $"{healthComponent.currentHealth.ToString("0")}/{healthComponent.maxHealth}";
 
         // Score del player.
         _playerScoreText.text = playerScore.currentScore.ToString();

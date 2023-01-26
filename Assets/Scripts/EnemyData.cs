@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyData : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] private Enemy _enemyData;
     [SerializeField] public float _health;
     [SerializeField] public float _attackSpeed;
@@ -18,9 +19,13 @@ public class EnemyData : MonoBehaviour
 
     [SerializeField] public bool startBehaviors = false;
 
-    // Animations
+    [Header("Animations")]
     [SerializeField] private AnimationSprites spawnSprites;
     private Sprite[] _spawnAnimation;
+
+    [Header("Taking damage feedback")]
+    [SerializeField] private Color damagedColor;
+    [SerializeField] private float timeDamagedColor;
 
     private void Awake()
     {
@@ -72,6 +77,20 @@ public class EnemyData : MonoBehaviour
             health.TakeDamage(_damage);
             canAttack = 0f;
         }
+    }
+
+    public void TakingDamage(float damage)
+    {
+        _health -= damage;
+
+        StartCoroutine(takingDamageColor());
+    }
+
+    private IEnumerator takingDamageColor()
+    {
+        spriteRenderer.color = damagedColor;
+        yield return new WaitForSeconds(0.3f);
+        spriteRenderer.color = Color.white;
     }
 
     private IEnumerator spawnAnimation()

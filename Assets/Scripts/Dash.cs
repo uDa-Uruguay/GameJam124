@@ -18,6 +18,14 @@ public class Dash : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
 
+    // Elementos para evitar que se pierda vida ni se colisione.
+    private PlayerHealth playerHealth;
+
+    private void OnEnable()
+    {
+        playerHealth = this.GetComponent<PlayerHealth>();
+    }
+
     private void Update()
     {
         // Obtiene info del movimiento
@@ -40,6 +48,10 @@ public class Dash : MonoBehaviour
         isDashing = true;
         tr.emitting = true;
 
+        playerHealth.isInvulnerable = true; // Evita que le quite vida
+
+        Physics2D.IgnoreLayerCollision(6, 8, true); // Evita que colisiones con enemigos
+
         if (_horizontal != 0 && !isDiagonally)
         {
             rb.velocity = new Vector2(_horizontal * dashingPower, 0f);
@@ -54,9 +66,16 @@ public class Dash : MonoBehaviour
             //Debug.Log("Dashing diagonally");
         }
         yield return new WaitForSeconds(dashingTime);
+
+        // Reset de todo
         rb.velocity = new Vector2(0f, 0f);
         tr.emitting = false;
         isDashing = false;
+
+        playerHealth.isInvulnerable = false;
+
+        Physics2D.IgnoreLayerCollision(6, 8, false);
+
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
