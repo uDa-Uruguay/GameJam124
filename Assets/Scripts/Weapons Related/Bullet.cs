@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rd2D;
 
+    private GameObject playerGO;
+    [SerializeField] private float _knockbackForce;
+
     private Vector3 direction;
     private Vector3 rotation;
 
@@ -28,10 +31,13 @@ public class Bullet : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] public bool isCollectable;
+    private bool attackEnemy = true;
 
 
     void OnEnable()
     {
+        playerGO = GameObject.FindGameObjectWithTag("Player");
+
         // Al aparecer en pantalla, comienza la corrutina. Toma como dato el tiempo en que demorara en desaparecer.
         if (disappearEnable) StartCoroutine(automaticDestroy(timeBeforeDisappear));
         if (isCollectable) StartCoroutine(createBoxCollision());
@@ -67,10 +73,14 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Recibe da�o el enemigo
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && attackEnemy)
         {
-            // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
+            // Extrae info del enemigo
             EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
+            KnockbackForce knockback = collision.gameObject.GetComponent<KnockbackForce>();
+
+            if(knockback) knockback.PlayFeedbackFromPlayer();
+            // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
             enemy.TakingDamage(damage);
         } 
     }
@@ -87,6 +97,7 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeStopping);
         rd2D.velocity = Vector3.zero;
+        attackEnemy = false;
     }
 
     // Permite las colisiones con el player
@@ -95,4 +106,5 @@ public class Bullet : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GameObject.Instantiate(boxCollider, this.gameObject.transform);
     }
+
 }

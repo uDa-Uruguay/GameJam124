@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Asi evitamos que la camara vaya mas alla de los limites.
+// En desuso
 public class FixedCamera : MonoBehaviour
 {
     [SerializeField] private float leftLimit = -4f;
