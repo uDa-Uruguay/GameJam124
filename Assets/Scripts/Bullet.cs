@@ -5,36 +5,61 @@ using System;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private GameObject boxCollider;
+
     // Datos a settear.
     private Vector3 mousePos; // Posicion del mouse
     private Camera mainCam;
     private Rigidbody2D rd2D;
 
+    private Vector3 direction;
+    private Vector3 rotation;
 
     // Valores de daño y el tiempo en que demora en desaparecer.
-    [SerializeField] private float force;
-    [SerializeField] private float damage = 4f;
+    private GameObject weapon;
+    public WeaponData weaponInfo;
+    private float force;
+    private float damage;
+
+    [SerializeField] private bool disappearEnable = false;
     [SerializeField] private float timeBeforeDisappear = 1.5f;
+
+    [SerializeField] private float timeBeforeStopping;
+
+    [Header("Others")]
+    [SerializeField] public bool isCollectable;
 
 
     void OnEnable()
     {
         // Al aparecer en pantalla, comienza la corrutina. Toma como dato el tiempo en que demorara en desaparecer.
-        StartCoroutine(automaticDestroy(timeBeforeDisappear));
+        if (disappearEnable) StartCoroutine(automaticDestroy(timeBeforeDisappear));
+        if (isCollectable) StartCoroutine(createBoxCollision());
 
         // Setteo.
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rd2D = this.GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); // Toma posición de pantalla y la transforma en posición x,y
 
-        // Sale en dirección que toque el mouse
-        Vector3 direction = mousePos - transform.position;
-        Vector3 rotation = transform.position - mousePos;
-        rd2D.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        // Setteo de valores.
+        weapon = GameObject.FindGameObjectWithTag("Weapon");
+        weaponInfo = weapon.GetComponent<WeaponData>();
+        force = weaponInfo.force;
+        damage = weaponInfo.damage;
 
-        // Controla la rotacion, no se como.
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        // Sale en dirección que toque el mouse
+
+        direction = mousePos - transform.position;
+        rotation = transform.position - mousePos; // No entiendo.
+
+        rd2D.velocity = new Vector2(direction.x, direction.y).normalized * force; // Normalized lo convierte en valores de 1, tomando en cuenta solo direccion o posicionamiento.
+
+        // Controla la rotacion.
+        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg; // Toma valores 'x' e 'y' para sacar el angulo en 'radians', luego se pasa a grados.
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
+        StartCoroutine(automaticStop());
+
     }
 
   
@@ -55,5 +80,19 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(interval);
         Destroy(gameObject);
+    }
+
+    // Detiene movimiento de la bala/flecha
+    private IEnumerator automaticStop()
+    {
+        yield return new WaitForSeconds(timeBeforeStopping);
+        rd2D.velocity = Vector3.zero;
+    }
+
+    // Permite las colisiones con el player
+    private IEnumerator createBoxCollision()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject.Instantiate(boxCollider, this.gameObject.transform);
     }
 }

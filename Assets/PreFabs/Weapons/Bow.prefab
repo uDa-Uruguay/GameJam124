@@ -49,6 +49,10 @@ MonoBehaviour:
   bulletTranform: {fileID: 6329441037510982435}
   canFire: 1
   timeBetweenFiring: 0.5
+  force: 3
+  damage: 3
+  maxAmmo: 20
+  currentAmmo: 20
 --- !u!1 &6329441037510982434
 GameObject:
   m_ObjectHideFlags: 0

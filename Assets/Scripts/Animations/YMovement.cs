@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadowMovement : MonoBehaviour
+public class YMovement : MonoBehaviour
 {
     [Header("Y movement")]
     [SerializeField] private bool yMovementEnable = true;
@@ -19,7 +19,6 @@ public class ShadowMovement : MonoBehaviour
     {
         if (yMovementEnable) StartCoroutine(AnimationY());
     }
-
 
     private IEnumerator AnimationY()
     {

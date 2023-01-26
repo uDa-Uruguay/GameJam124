@@ -28,4 +28,23 @@ public class GameEvents : MonoBehaviour
     {
         onPlayerTakingDamage?.Invoke();
     }
+
+    public event Action<int, int> onWeaponChange;
+    public void WeaponChange(int maxAmmo, int currentAmmo)
+    {
+        onWeaponChange?.Invoke(maxAmmo, currentAmmo);
+    }
+
+    public event Action onNoMoreAmmo;
+    public void NoMoreAmmo()
+    {
+        onNoMoreAmmo?.Invoke();
+    }
+
+    public event Action onAmmoCollected;
+    public void AmmoCollected()
+    {
+        onAmmoCollected?.Invoke();
+    }
+
 }

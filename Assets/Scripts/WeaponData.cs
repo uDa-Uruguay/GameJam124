@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class WeaponData : MonoBehaviour
 {
 
     private Camera mainCam;
@@ -14,14 +14,22 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float timeBetweenFiring;
 
+    [SerializeField] AudioSource _audio;
 
-    // Start is called before the first frame update
-    void Start()
+    [Header("Bullets info")]
+    [SerializeField] public float force;
+    [SerializeField] public float damage;
+    [SerializeField] public int maxAmmo;
+    [SerializeField] public int currentAmmo;
+
+
+    void OnEnable()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        _audio = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -47,8 +55,14 @@ public class Shooting : MonoBehaviour
         if (Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
-            Instantiate(bullet, bulletTranform.position, Quaternion.identity);
-
+            if (currentAmmo > 0)
+            {
+                Instantiate(bullet, bulletTranform.position, Quaternion.identity);
+                _audio.pitch = Random.Range(1f, 2f);
+                _audio.Play();
+                currentAmmo -= 1;
+                GameEvents.current.WeaponChange(maxAmmo, currentAmmo);
+            } else GameEvents.current.NoMoreAmmo();
         }
 
     }
