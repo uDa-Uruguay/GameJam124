@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2194464045520587063}
   - component: {fileID: 2194464045520587080}
   - component: {fileID: 270145222}
+  - component: {fileID: -8358263629455020450}
   m_Layer: 0
   m_Name: EnemyRed
   m_TagString: Enemy
@@ -132,8 +133,6 @@ MonoBehaviour:
   _damage: 0
   _score: 0
   spriteRenderer: {fileID: 2194464045520587063}
-  behaviors:
-  - {fileID: 11400000, guid: f2e4ffd1de6578447ae56936e231feb7, type: 2}
   startBehaviors: 0
   spawnSprites: {fileID: 11400000, guid: a30bef0e3b44e2b4489efea7c9ddaead, type: 2}
 --- !u!114 &270145222
@@ -151,3 +150,16 @@ MonoBehaviour:
   targetScaleX: 4
   targetScaleY: 6
   time: 0.8
+--- !u!114 &-8358263629455020450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194464045520587083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13731ea5e0c1904898c6c3a7336156d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Player

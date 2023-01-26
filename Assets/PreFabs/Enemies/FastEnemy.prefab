@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 420043964960348608}
   - component: {fileID: 964876648341490469}
   - component: {fileID: 847966888}
+  - component: {fileID: 1908263908907480511}
   m_Layer: 0
   m_Name: FastEnemy
   m_TagString: Enemy
@@ -132,8 +133,6 @@ MonoBehaviour:
   _damage: 0
   _score: 0
   spriteRenderer: {fileID: 420043964960348612}
-  behaviors:
-  - {fileID: 11400000, guid: f2e4ffd1de6578447ae56936e231feb7, type: 2}
   startBehaviors: 0
   spawnSprites: {fileID: 11400000, guid: ed5ef81646e0e3442b7d5faf457c3c14, type: 2}
 --- !u!114 &847966888
@@ -151,3 +150,16 @@ MonoBehaviour:
   targetScaleX: 3
   targetScaleY: 5.5
   time: 0.4
+--- !u!114 &1908263908907480511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420043964960348614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13731ea5e0c1904898c6c3a7336156d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Player

@@ -15,8 +15,8 @@ public class EnemyData : MonoBehaviour
     // Esto asegura que no se spamee el ataque, solo atacará segun su velocidad de ataque (en segundos)
     private float canAttack;
 
-    [SerializeField] private Behavior[] behaviors;
-    [SerializeField] private bool startBehaviors = false;
+
+    [SerializeField] public bool startBehaviors = false;
 
     // Animations
     [SerializeField] private AnimationSprites spawnSprites;
@@ -48,15 +48,6 @@ public class EnemyData : MonoBehaviour
 
     private void Update()
     {
-        if (startBehaviors)
-        {
-            // De tener más de un comportamiento, los activa a todos. (Hay que probar si sigue funcionando al tener mas de uno)
-            for (int i = 0; i < behaviors.Length; i++)
-            {
-                behaviors[i].behavior(this);
-            }
-        }
-
         // Se le va sumando el tiempo para ir comprobando si puede o no atacar.
         canAttack += Time.deltaTime;
 

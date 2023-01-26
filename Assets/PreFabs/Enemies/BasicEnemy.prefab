@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9195878362702993266}
   - component: {fileID: 3344953390759250690}
   - component: {fileID: 3344953390759250749}
-  - component: {fileID: 236352239}
   - component: {fileID: 236352245}
+  - component: {fileID: -2928236981503822253}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -155,23 +155,8 @@ MonoBehaviour:
   _damage: 0
   _score: 0
   spriteRenderer: {fileID: 3344953390759250691}
-  behaviors:
-  - {fileID: 11400000, guid: f2e4ffd1de6578447ae56936e231feb7, type: 2}
   startBehaviors: 0
   spawnSprites: {fileID: 11400000, guid: 42a34b4cbda9d4a449e967415b7d243e, type: 2}
---- !u!114 &236352239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3344953390759250748}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022077fbf68ec04449293e6ca64848d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spritesContainer: {fileID: 11400000, guid: 2324a05a7c4e8c140b280b539b9f4c97, type: 2}
 --- !u!114 &236352245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +172,16 @@ MonoBehaviour:
   targetScaleX: 3
   targetScaleY: 5
   time: 0.6
+--- !u!114 &-2928236981503822253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3344953390759250748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13731ea5e0c1904898c6c3a7336156d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Player
