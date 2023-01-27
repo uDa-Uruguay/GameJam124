@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // Toma informacion del player para asi extraer su vida actual.
+    [Header("Player data")]
     [SerializeField] private GameObject player;
     private PlayerHealth healthComponent;
     private PlayerScore playerScore;
@@ -16,20 +17,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject healthBarObject;
     private HealthBar healtBar;
 
+    [Header("Enemies killed")]
+    [SerializeField] public bool enableShop = false;
+    [SerializeField] private int enemiesKilledNeeded;
+    private int enemiesKilled = 0;
+    private bool shopAvailable = false;
+
+
+    [Header("UI Text")]
     // Elementos de UI
     [SerializeField] private TMP_Text _playerHealthText;
     [SerializeField] private TMP_Text _playerScoreText;
     [SerializeField] private TMP_Text _playerHighscore;
 
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         // Extrae el componente PlayerHealth del gO Player.
         healthComponent = player.GetComponent<PlayerHealth>();
-        if (healthComponent) //is not null.
-        {
-            // Extrae la vida máxima del componente. (ESTO ESTA EN DESUSO)
-            _playerHealthText.text = healthComponent.maxHealth.ToString();
-        }
+
+        // Extrae AudioSource
+        _audioSource = GetComponent<AudioSource>();
 
         // Extrae componente de Score del Player y lo asigna a _playerScoreText
         playerScore = player.GetComponent<PlayerScore>();
@@ -49,23 +58,45 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
+        if (ShopButtonManager.isShopOpen) _audioSource.volume = 0f;
+        else _audioSource.volume = 0.15f;
+
         // Vida del player.
         _playerHealthText.text = $"{healthComponent.currentHealth.ToString("0")}/{healthComponent.maxHealth}";
 
         // Score del player.
         _playerScoreText.text = playerScore.currentScore.ToString();
+
+        // Tienda disponible
+        if (shopAvailable)
+        {
+            shopAvailable = false;
+            GameEvents.current.ShopAvaiable();
+        }
     }
 
-    // Actualiza el score. (Actualmente no toma parametros personalizados)
+    // Actualiza el score.
     private void UpdateScore(int points)
     {
         playerScoreData += points;
         if (playerScore) playerScore.currentScore = playerScoreData;
     }
 
-    public void RestartScene()
+    // Actualizacion de enemigos muertos
+    private void UpdateEnemiesKilled()
     {
-        SceneManager.LoadScene("SampleScene");
+        if (enemiesKilledNeeded > enemiesKilled) enemiesKilled++;
+        else
+        {
+            enemiesKilled = enemiesKilledNeeded;
+            shopAvailable = true;
+        }
+    }
+
+    private void ShopUsed()
+    {
+        shopAvailable = false;
+        enemiesKilled = 0;
     }
 
     private void showHighscore()
@@ -76,7 +107,14 @@ public class GameManager : MonoBehaviour
     private IEnumerator waitForEventSystem()
     {
         yield return new WaitForSeconds(0.2f);
-        GameEvents.current.onEnemyTakingDamage += UpdateScore;
+        GameEvents.current.onEnemyDyingPoints += UpdateScore;
         GameEvents.current.onPlayerDying += showHighscore;
+        GameEvents.current.onEnemyDying += UpdateEnemiesKilled;
+        GameEvents.current.onShopDisable += ShopUsed;
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

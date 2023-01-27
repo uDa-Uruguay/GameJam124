@@ -24,10 +24,14 @@ public class Dash : MonoBehaviour
     private void OnEnable()
     {
         playerHealth = this.GetComponent<PlayerHealth>();
+
+        GameEvents.current.onDashBought += EnableDash;
     }
 
     private void Update()
     {
+        if (!CurrentStats.current.haveDash) canDash = false;
+
         // Obtiene info del movimiento
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
@@ -40,6 +44,11 @@ public class Dash : MonoBehaviour
 
         if (_horizontal == 0 && _vertical == 0) return;
         else if (Input.GetKey(KeyCode.Space)) StartCoroutine(DashAction());
+    }
+
+    private void EnableDash()
+    {
+        canDash = true;
     }
 
     private IEnumerator DashAction()

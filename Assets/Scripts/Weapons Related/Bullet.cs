@@ -79,10 +79,17 @@ public class Bullet : MonoBehaviour
             EnemyData enemy = collision.gameObject.GetComponent<EnemyData>();
             KnockbackForce knockback = collision.gameObject.GetComponent<KnockbackForce>();
 
-            if(knockback) knockback.PlayFeedbackFromPlayer();
+            if (knockback) knockback.PlayFeedbackFromPlayer();
             // Modifica la vida enemiga y de tener 0 o menos, elimina al objetivo.
             enemy.TakingDamage(damage);
-        } 
+        } else if (collision.gameObject.tag == "Enemy")
+        {
+            BoxCollider2D thisCollider = this.GetComponent<BoxCollider2D>();
+            BoxCollider2D boxColliderComponent = boxCollider.GetComponent<BoxCollider2D>();
+
+            Physics2D.IgnoreCollision(thisCollider, collision.collider);
+            Physics2D.IgnoreCollision(boxColliderComponent, collision.collider);
+        }
     }
 
     // Corrutina para eleminar automaticamente balas.

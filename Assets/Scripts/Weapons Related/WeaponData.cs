@@ -14,7 +14,7 @@ public class WeaponData : MonoBehaviour
     private float timer;
     public float timeBetweenFiring;
 
-    [SerializeField] AudioSource _audio;
+    private AudioSource _audioSource;
 
     [Header("Bullets info")]
     [SerializeField] public float force;
@@ -27,12 +27,14 @@ public class WeaponData : MonoBehaviour
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
-        _audio = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if(!_audio) _audio = GetComponent<AudioSource>();
+        if (ShopButtonManager.isShopOpen) return;
+
+        if(!_audioSource) _audioSource = GetComponent<AudioSource>();
 
 
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -61,8 +63,8 @@ public class WeaponData : MonoBehaviour
             if (currentAmmo > 0)
             {
                 Instantiate(bullet, bulletTranform.position, Quaternion.identity);
-                _audio.pitch = Random.Range(1f, 2f);
-                _audio.Play();
+                _audioSource.pitch = Random.Range(1f, 2f);
+                _audioSource.Play();
                 currentAmmo -= 1;
                 GameEvents.current.WeaponChange(maxAmmo, currentAmmo);
             } else GameEvents.current.NoMoreAmmo();

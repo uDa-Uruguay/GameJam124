@@ -12,13 +12,17 @@ public class PlayerListener : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip noAmmoSound;
 
     private void Start()
     {
         _spriteRenderer = spriteGO.GetComponent<SpriteRenderer>();
 
         GameEvents.current.onPlayerTakingDamage += redSpriteActive;
-        GameEvents.current.onPlayerTakingDamage += hitSound;
+        GameEvents.current.onPlayerTakingDamage += hitSoundPlay;
+
+        GameEvents.current.onNoMoreAmmo += noAmmoSoundPlay;
     }
 
     // When hit events //
@@ -35,14 +39,25 @@ public class PlayerListener : MonoBehaviour
         _spriteRenderer.color = Color.white;
     }
 
-    private void hitSound()
+    // Sound effects
+    private void hitSoundPlay()
     {
+        audioSource.clip = hitSound;
+        audioSource.pitch = Random.Range(1f, 2f);
         audioSource.Play();
     }
+    private void noAmmoSoundPlay()
+    {
+        audioSource.clip = noAmmoSound;
+        audioSource.Play();
+    }
+
 
     private void OnDestroy()
     {
         GameEvents.current.onPlayerTakingDamage -= redSpriteActive;
-        GameEvents.current.onPlayerTakingDamage -= hitSound;
+        GameEvents.current.onPlayerTakingDamage -= hitSoundPlay;
+
+        GameEvents.current.onNoMoreAmmo -= noAmmoSoundPlay;
     }
 }

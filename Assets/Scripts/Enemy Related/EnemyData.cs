@@ -58,8 +58,9 @@ public class EnemyData : MonoBehaviour
 
         if (_health <= 0)
         {
+            GameEvents.current.EnemyDyingPoints(_score);
+            GameEvents.current.EnemyDying();
             Destroy(this.gameObject);
-            GameEvents.current.EnemyTakingDamage(_score);
         }
     }
 

@@ -10,11 +10,16 @@ public class GameEvents : MonoBehaviour
         current = this;
     }
 
-    // More like enemy dying, actually
-    public event Action<int> onEnemyTakingDamage;
-    public void EnemyTakingDamage(int points)
+    public event Action<int> onEnemyDyingPoints;
+    public void EnemyDyingPoints(int points)
     {
-        onEnemyTakingDamage?.Invoke(points);
+        onEnemyDyingPoints?.Invoke(points);
+    }
+
+    public event Action onEnemyDying;
+    public void EnemyDying()
+    {
+        onEnemyDying?.Invoke();
     }
 
     public event Action onPlayerDying;
@@ -47,4 +52,21 @@ public class GameEvents : MonoBehaviour
         onAmmoCollected?.Invoke();
     }
 
+    public event Action onShopAvailable;
+    public void ShopAvaiable()
+    {
+        onShopAvailable?.Invoke();
+    }
+
+    public event Action onShopDisable;
+    public void ShopDisable()
+    {
+        onShopDisable?.Invoke();
+    }
+
+    public event Action onDashBought;
+    public void DashBough()
+    {
+        onDashBought?.Invoke();
+    }
 }
