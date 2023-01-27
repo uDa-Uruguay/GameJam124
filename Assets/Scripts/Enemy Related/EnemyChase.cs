@@ -25,6 +25,5 @@ public class EnemyChase : MonoBehaviour
         {
             this.transform.position = Vector2.MoveTowards(this.transform.position, target.transform.position, _enemySpeed * Time.deltaTime);
         }
-        else Debug.Log($"Gameobject with tag '{targetTag}' not found in scene");
     }
 }

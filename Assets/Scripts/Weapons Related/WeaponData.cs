@@ -32,6 +32,9 @@ public class WeaponData : MonoBehaviour
 
     void Update()
     {
+        if(!_audio) _audio = GetComponent<AudioSource>();
+
+
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
