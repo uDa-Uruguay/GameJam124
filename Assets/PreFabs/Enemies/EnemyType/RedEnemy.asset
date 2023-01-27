@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6785e98f0aed19941acd35f57b2a863d, type: 3}
   m_Name: RedEnemy
   m_EditorClassIdentifier: 
-  <EnemyHealth>k__BackingField: 15
+  <EnemyHealth>k__BackingField: 10
   <MovementSpeed>k__BackingField: 1.5
   <AttackSpeed>k__BackingField: 5
   <Damage>k__BackingField: 6
