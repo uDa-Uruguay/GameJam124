@@ -991,10 +991,6 @@ PrefabInstance:
       propertyPath: shopUI
       value: 
       objectReference: {fileID: 1832109416}
-    - target: {fileID: 4030684147475424456, guid: 07e8fa121d90a7347a4909475fac3f05, type: 3}
-      propertyPath: dashIcon
-      value: 
-      objectReference: {fileID: 1998480563}
     - target: {fileID: 5878369605100148664, guid: 07e8fa121d90a7347a4909475fac3f05, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1292,29 +1288,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6329441038340863669, guid: 205ccf12f6c546146adc819a58296631, type: 3}
-      propertyPath: force
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 6927057475209580451, guid: 205ccf12f6c546146adc819a58296631, type: 3}
       propertyPath: healthBarObject
       value: 
       objectReference: {fileID: 1716964684}
-    - target: {fileID: 7100631780378327626, guid: 205ccf12f6c546146adc819a58296631, type: 3}
-      propertyPath: m_Mass
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100631780378327626, guid: 205ccf12f6c546146adc819a58296631, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7100631780378327666, guid: 205ccf12f6c546146adc819a58296631, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100631780378327668, guid: 205ccf12f6c546146adc819a58296631, type: 3}
-      propertyPath: dashingPower
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7100631780378327670, guid: 205ccf12f6c546146adc819a58296631, type: 3}
       propertyPath: m_RootOrder
@@ -1657,40 +1637,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopUI: {fileID: 1832109416}
---- !u!1 &1540005021 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8861407104331314353, guid: 29105deee402db94d8e6f67e0a48107b, type: 3}
-  m_PrefabInstance: {fileID: 8861407103150121128}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1558284257 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8861407104331314355, guid: 29105deee402db94d8e6f67e0a48107b, type: 3}
   m_PrefabInstance: {fileID: 8861407103150121128}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540005021}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5c6b62a3fc5f3d4c81ff49a70d87704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1558284260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540005021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423afafba3f3f75458fefb3be51e3320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  haveDash: 0
-  haveShield: 0
-  speedBoost: 1
-  maxHealth: 20
-  bulletSpeedBoost: 1
-  damageBoost: 1
 --- !u!1 &1651904701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,11 +1987,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c807d6401037b43a524bf85c44bcb7, type: 3}
---- !u!1 &1998480563 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1998480563, guid: 07e8fa121d90a7347a4909475fac3f05, type: 3}
-  m_PrefabInstance: {fileID: 670813106}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2060958203677372584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2099,18 +2051,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1200152194, guid: e16212e584a20ad4e83c7122455ef508, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1200152194, guid: e16212e584a20ad4e83c7122455ef508, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1200152194, guid: e16212e584a20ad4e83c7122455ef508, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3040263511110873500, guid: e16212e584a20ad4e83c7122455ef508, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2225,10 +2165,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1558284259, guid: 29105deee402db94d8e6f67e0a48107b, type: 3}
-      propertyPath: m_Volume
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 8861407104331314353, guid: 29105deee402db94d8e6f67e0a48107b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2297,9 +2233,5 @@ PrefabInstance:
       propertyPath: _playerHealthText
       value: 
       objectReference: {fileID: 1400398578}
-    - target: {fileID: 8861407104331314355, guid: 29105deee402db94d8e6f67e0a48107b, type: 3}
-      propertyPath: enemiesKilledNeeded
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29105deee402db94d8e6f67e0a48107b, type: 3}

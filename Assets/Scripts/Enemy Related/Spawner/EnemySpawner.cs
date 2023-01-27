@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
 
         waveNumGUI.text = $"Wave {_waveNumber + 1}";
 
-        GameEvents.current.onPlayerDying += StopSpawning;
+        StartCoroutine(RefreshTime());
     }
 
     private void FixedUpdate()
@@ -98,5 +98,12 @@ public class EnemySpawner : MonoBehaviour
     private void StopSpawning()
     {
         stopSpawning = true;
+    }
+
+    // Para evitar temas de que algo se activa primero que lo otro y hay null reference.
+    private IEnumerator RefreshTime()
+    {
+        yield return new WaitForSeconds(0.4f);
+        GameEvents.current.onPlayerDying += StopSpawning;
     }
 }

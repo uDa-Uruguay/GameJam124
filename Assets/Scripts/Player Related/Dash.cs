@@ -21,7 +21,7 @@ public class Dash : MonoBehaviour
     // Elementos para evitar que se pierda vida ni se colisione.
     private PlayerHealth playerHealth;
 
-    private void OnEnable()
+    private void Start()
     {
         playerHealth = this.GetComponent<PlayerHealth>();
 
