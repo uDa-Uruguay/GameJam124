@@ -14,12 +14,9 @@ public class HealthBar : MonoBehaviour
     private void Awake()
     {
         fill.color = gradient.Evaluate(1f);
+        maxHealth = CurrentStats.current.maxHealth;
 
         StartCoroutine(getMaxHealth());
-    }
-    private void Update()
-    {
-
     }
 
     public void UpdateHealth(float Health)

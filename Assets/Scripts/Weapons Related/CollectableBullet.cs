@@ -24,8 +24,8 @@ public class CollectableBullet : MonoBehaviour
         if (_weaponManager.currentWeaponID == 0) correctWeapon = true;
         else correctWeapon = false;
     }
-    
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!correctWeapon) return;
 
@@ -40,5 +40,4 @@ public class CollectableBullet : MonoBehaviour
             }
         }
     }
-
 }

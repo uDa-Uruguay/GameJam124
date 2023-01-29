@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemyHealth>k__BackingField: 4
   <MovementSpeed>k__BackingField: 3
-  <AttackSpeed>k__BackingField: 1
+  <AttackSpeed>k__BackingField: 0.5
   <Damage>k__BackingField: 0.5
   <EnemySprite>k__BackingField: {fileID: -1165886725, guid: 3391b61ce8f36be4aa4ee5fb7d1933a4, type: 3}
   <Score>k__BackingField: 10

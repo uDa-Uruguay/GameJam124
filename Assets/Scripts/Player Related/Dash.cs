@@ -6,7 +6,6 @@ public class Dash : MonoBehaviour
 {
     private float _horizontal;
     private float _vertical;
-    private bool isDiagonally = false;
 
     [SerializeField] private bool canDash = true;
     public bool isDashing = false;
@@ -36,10 +35,6 @@ public class Dash : MonoBehaviour
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
 
-        // Chequea que no este moviendose en horizontal.
-        if (_horizontal != 0 && _vertical != 0) isDiagonally = true;
-        else isDiagonally = false;
-
         if (isDashing || !canDash) return;
 
         if (_horizontal == 0 && _vertical == 0) return;
@@ -61,19 +56,7 @@ public class Dash : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(6, 8, true); // Evita que colisiones con enemigos
 
-        if (_horizontal != 0 && !isDiagonally)
-        {
-            rb.velocity = new Vector2(_horizontal * dashingPower, 0f);
-            //Debug.Log("Dashing horizontal");
-        } else if (_vertical != 0 && !isDiagonally)
-        {
-            rb.velocity = new Vector2(0f, _vertical * dashingPower);
-            //Debug.Log("Dashing vertical");
-        } else if (isDiagonally)
-        {
-            rb.velocity = new Vector2((_horizontal * dashingPower) / 2, (_vertical * dashingPower)/2);
-            //Debug.Log("Dashing diagonally");
-        }
+        rb.AddForce(new Vector2(_horizontal, _vertical).normalized * dashingPower, ForceMode2D.Force);
         yield return new WaitForSeconds(dashingTime);
 
         // Reset de todo

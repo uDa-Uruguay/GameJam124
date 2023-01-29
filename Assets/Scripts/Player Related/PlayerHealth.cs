@@ -9,8 +9,9 @@ public class PlayerHealth : MonoBehaviour
     private HealthBar healthbar;
 
     public bool isInvulnerable = false;
-    private void Start()
+    private void Awake()
     {
+        maxHealth = CurrentStats.current.maxHealth;
         currentHealth = maxHealth;
 
         healthbar = healthBarObject.GetComponent<HealthBar>();

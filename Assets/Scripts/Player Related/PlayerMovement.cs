@@ -8,56 +8,54 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sp;
     private SpriteCointainerManager spriteContainer;
 
+    // Rigid Body del personaje
+    Rigidbody2D _ridigBody;
+
     // Variables de movimiento
     private float _horizontal;
     private float _vertical;
+    private Vector2 _direction;
+    private Vector2 _movementVector;
     [SerializeField] private float _playerMovment = 5f;
 
-    // Last facing
-    private bool facingLeft = false;
     // Check de ir en diagonal
     private bool movingDiagonally = false;
-
-
+    
+    
     private void Start()
     {
+        _ridigBody = this.GetComponent<Rigidbody2D>();
+
         sp = PlayerSprite.GetComponent<SpriteRenderer>();
         spriteContainer = PlayerSprite.GetComponent<SpriteCointainerManager>();
     }
 
-    void FixedUpdate()
+    // Update es mejor para obtener input ya que va frame por frame
+    private void Update()
     {
         //Input del teclado
         _horizontal = Input.GetAxisRaw("Horizontal");
         _vertical = Input.GetAxisRaw("Vertical");
+     
 
+        _direction = new Vector2(_horizontal, _vertical);
+    }
+    void FixedUpdate()
+    {
         SetSprites(movingDiagonally);
 
-        if (_horizontal != 0 && _vertical != 0) movingDiagonally = true;
+        // Si hay movimiento de ambas direcciones, quiere decir que va en diagonal.
+        if (_direction.x != 0 && _direction.y != 0) movingDiagonally = true;
         else movingDiagonally = false;
 
-        Movement(movingDiagonally);
+        //Movement(movingDiagonally);
+        _movementVector = ((Vector2)transform.position + (_direction.normalized * Time.deltaTime * _playerMovment));
+        _ridigBody.MovePosition(_movementVector);
 
-        if (_horizontal < 0 || facingLeft) sp.flipX = true;
-
-        if(_horizontal > 0)
-        {
-            facingLeft = false;
-            sp.flipX = false;
-        }
-    }
-
-    private void Movement(bool diagonally)
-    {
-        if (!diagonally)
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * _playerMovment * _horizontal);
-            transform.Translate(Vector3.up * Time.deltaTime * _playerMovment * _vertical);
-        } else
-        {
-            transform.Translate((Vector3.right * Time.deltaTime * _playerMovment * _horizontal) / 2);
-            transform.Translate((Vector3.up * Time.deltaTime * _playerMovment * _vertical) / 2);
-        }
+        // Invierte el sprite segun hacia donde se mueva
+        if (_horizontal < 0) sp.flipX = true;
+        if(_horizontal > 0) sp.flipX = false;
+        
     }
 
     private void SetSprites(bool diagonally)

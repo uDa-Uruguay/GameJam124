@@ -13,8 +13,8 @@ public class EnemyData : MonoBehaviour
 
     [SerializeField] public SpriteRenderer spriteRenderer;
 
-    // Esto asegura que no se spamee el ataque, solo atacará segun su velocidad de ataque (en segundos)
-    private float canAttack;
+    // Esto asegura que no se spamee el ataque, solo atacarï¿½ segun su velocidad de ataque (en segundos). Se actualiza y comienza una vez dentro del area de jugador.
+    private float canAttack = 0;
 
 
     [SerializeField] public bool startBehaviors = false;
@@ -65,12 +65,11 @@ public class EnemyData : MonoBehaviour
     }
 
 
-
     private void OnCollisionStay2D(Collision2D collision)
     {
-        // Si aun no termino de spawnea, no hará daño.
+        // Si aun no termino de spawnea, no harï¿½ daï¿½o.
         if (!startBehaviors) return;
-        // Hace daño al player
+        // Hace daï¿½o al player
         if (collision.gameObject.tag == "Player" && _attackSpeed <= canAttack)
         {
             PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
@@ -79,6 +78,7 @@ public class EnemyData : MonoBehaviour
             canAttack = 0f;
         }
     }
+
 
     public void TakingDamage(float damage)
     {
