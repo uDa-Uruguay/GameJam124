@@ -43,26 +43,13 @@ public class Bullet : MonoBehaviour
         if (isCollectable) StartCoroutine(createBoxCollision());
 
         // Setteo.
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rd2D = this.GetComponent<Rigidbody2D>();
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition); // Toma posición de pantalla y la transforma en posición x,y
 
         // Setteo de valores.
         weapon = GameObject.FindGameObjectWithTag("Weapon");
         weaponInfo = weapon.GetComponent<WeaponData>();
         force = weaponInfo.force;
         damage = weaponInfo.damage;
-
-        // Sale en dirección que toque el mouse
-
-        direction = mousePos - transform.position;
-        rotation = transform.position - mousePos; // No entiendo.
-
-        rd2D.velocity = new Vector2(direction.x, direction.y).normalized * force; // Normalized lo convierte en valores de 1, tomando en cuenta solo direccion o posicionamiento.
-
-        // Controla la rotacion.
-        float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg; // Toma valores 'x' e 'y' para sacar el angulo en 'radians', luego se pasa a grados.
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
         StartCoroutine(automaticStop());
 

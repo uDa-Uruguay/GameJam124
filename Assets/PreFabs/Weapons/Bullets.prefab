@@ -150,6 +150,6 @@ MonoBehaviour:
   _knockbackForce: 0
   weaponInfo: {fileID: 0}
   disappearEnable: 1
-  timeBeforeDisappear: 0.4
+  timeBeforeDisappear: 0.6
   timeBeforeStopping: 1
   isCollectable: 0
